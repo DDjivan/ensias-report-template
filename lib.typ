@@ -7,23 +7,25 @@
   set page(
     numbering: "1",
     number-align: center,
-    footer: locate(loc => {
-      // Omit page number on the first page
-      let page-number = counter(page).at(loc).at(0);
-      if page-number > 1 {
-        line(length: 100%, stroke: 0.5pt)
-        v(-2pt)
-        text(size: 12pt, weight: "regular")[
-          #footer-text
-          #h(1fr)
-          #page-number
-          #h(1fr)
-          #academic-year
+    footer: context {
+      let current = counter(page).get().at(0)
+      if current > 1 {
+        block[
+          #line(length: 100%, stroke: 0.5pt)
+          #v(-2pt)
+          #text(size: 12pt, weight: "regular")[
+            #footer-text
+            #h(1fr)
+            #counter(page).display()
+            #h(1fr)
+            #academic-year
+          ]
         ]
+      } else {
+        none
       }
-    })
+    }
   )
-
   let dict = json("resources/i18n/en.json")
   let lang = "en"
   if french {
@@ -31,7 +33,8 @@
     lang = "fr"
   }
 
-  set text(font: "Linux Libertine", lang: lang, size: 13pt)
+//   set text(font: "Linux Libertine", lang: lang, size: 13pt)
+  set text(font: "Libertinus Serif", lang: lang, size: 13pt)
   set heading(numbering: "1.1")
   
   show heading: it => {
@@ -145,7 +148,8 @@
   pagebreak()
 
   // Table of contents.
-  outline(depth: 3, indent: true)
+//   outline(depth: 3, indent: true)
+  outline(depth: 3, indent: 1em)
 
   pagebreak()
 
