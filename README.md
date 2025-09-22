@@ -52,3 +52,9 @@ More improvements will come soon.
 
 - Fixed major issue where custom school & company logos would throw an error
 - Added option to customize footer left side text (thus fixing the issue of it being hardcoded)
+
+**0.1.2**
+
+- Fixed lib.typ for newer Typst versions because previous syntax would throw errors (footer, font, outline indent) 
+- Added a space for proper French punctuation 
+
